@@ -1,3 +1,7 @@
-# wtite
+# Space Invaders game for NetCast TVs
 
-run smothly
+### Implemented
++ Safari 5 support
++ Smooth 30 fps on a 2013 TV
++ Inside the game menu
++ Nice BGM (TODO)
