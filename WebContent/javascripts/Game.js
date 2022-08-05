@@ -122,6 +122,7 @@ SI.Game.prototype.checkEndGame = function () {
 		// win script
 		clearInterval(this.clock);
 		gameRun = false;
+		//bgm.stop();
 		winMenu()
 	}
 	else if(this.lives == 0 ||
@@ -130,6 +131,7 @@ SI.Game.prototype.checkEndGame = function () {
 		// lose script
 		clearInterval(this.clock);
 		gameRun = false;
+		//bgm.stop();
 		loseMenu()
 	}
 }

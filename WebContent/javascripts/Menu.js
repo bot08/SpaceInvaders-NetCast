@@ -1,5 +1,11 @@
+/*
+ *  TODO: refactor this buggy shit
+*/
+
 // declare a variable
 var curentMenu = null
+//var bgm = document.getElementById("bgm");
+
 
 function mainMenu(){
     // menu text
@@ -55,40 +61,45 @@ function mainMenu(){
         }
     }
 
-    // event keydown
-    $(document).ready(function() {
-        $(document).keydown(function (event) {
-            if(gameRun != true && curentMenu == "main"){
-                var key = event.keycode || event.which;
-                switch (key) {
-                case 40:   // down
-                    activeChange(1)
-                    break;
-                case 38:   // up
-                    activeChange(-1)
-                    break;
-                case 13:   // enter
-                    if(active == 0){
-                        startGame()
-                    }
-                    if(active == 1){
-                        authorsMenu()
-                    }
-                    if(active == 2){
+    // fix double click after another menu (maybe not work)
+    if(firstLoad != true){
+        // event keydown
+        $(document).ready(function() {
+            $(document).keydown(function (event) {
+                if(gameRun != true && curentMenu == "main"){
+                    var key = event.keycode || event.which;
+                    switch (key) {
+                    case 40:   // down
+                        activeChange(1)
+                        break;
+                    case 38:   // up
+                        activeChange(-1)
+                        break;
+                    case 13:   // enter
+                        if(active == 0){
+                            startGame()
+                        }
+                        if(active == 1){
+                            authorsMenu()
+                        }
+                        if(active == 2){
+                            if(window.NetCastBack){
+                                window.NetCastBack();
+                            }
+                        }
+                        break;
+                    case 461:   // back
                         if(window.NetCastBack){
                             window.NetCastBack();
                         }
+                        break;
                     }
-                    break;
-                case 461:   // back
-                    if(window.NetCastBack){
-                        window.NetCastBack();
-                    }
-                    break;
                 }
-            }
-        })
-    });
+            })
+        });
+
+        var firstLoad = true
+    }
 
     // draw
     drawMenu();
@@ -368,6 +379,7 @@ function winMenu(){
 function startGame(){
     gameRun = true;
     var game = new SI.Game();
+	//bgm.play();
     game.start();
 }
 
